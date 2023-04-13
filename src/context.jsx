@@ -2,16 +2,17 @@ import { createContext, useContext, useState, useEffect } from 'react';
 
 const AppContext = createContext();
 
-function getInitialDarkMode() {
+const getInitialDarkMode = () => {
   const prefersDarkMode = window.matchMedia(
-    '(prefers-color-scheme: dark)'
+    '(prefers-color-scheme:dark)'
   ).matches;
   const storedDarkMode = localStorage.getItem('darkTheme') === 'true';
-  return storedDarkMode || prefersDarkMode;
-}
+  console.log(prefersDarkMode);
+  return prefersDarkMode;
+};
 
 export const AppProvider = ({ children }) => {
-  const [isDarkTheme, setIsDarkTheme] = useState(getInitialDarkMode);
+  const [isDarkTheme, setIsDarkTheme] = useState(getInitialDarkMode());
   const [searchTerm, setSearchTerm] = useState('cat');
   const toggleDarkTheme = () => {
     const newDarkTheme = !isDarkTheme;
@@ -20,10 +21,8 @@ export const AppProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const body = document.querySelector('body');
-    body.classList.toggle('dark-theme', isDarkTheme);
+    document.body.classList.toggle('dark-theme', isDarkTheme);
   }, [isDarkTheme]);
-
   return (
     <AppContext.Provider
       value={{ isDarkTheme, toggleDarkTheme, searchTerm, setSearchTerm }}

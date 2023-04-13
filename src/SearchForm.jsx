@@ -1,6 +1,6 @@
 import { useGlobalContext } from './context';
 
-const Form = () => {
+const SearchForm = () => {
   const { setSearchTerm } = useGlobalContext();
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,7 +18,6 @@ const Form = () => {
           name='search'
           placeholder='cat'
         />
-
         <button type='submit' className='btn'>
           search
         </button>
@@ -26,4 +25,4 @@ const Form = () => {
     </section>
   );
 };
-export default Form;
+export default SearchForm;

@@ -1,12 +1,13 @@
-import Form from './Form';
-import ImageContainer from './ImageContainer';
-import ColorModeToggle from './ColorThemeToggle';
+import Gallery from './Gallery';
+import SearchForm from './SearchForm';
+import ThemeToggle from './ThemeToggle';
+
 const App = () => {
   return (
     <main>
-      <ColorModeToggle />
-      <Form />
-      <ImageContainer />
+      <ThemeToggle />
+      <SearchForm />
+      <Gallery />
     </main>
   );
 };
