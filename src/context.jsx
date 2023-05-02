@@ -7,8 +7,9 @@ const getInitialDarkMode = () => {
     '(prefers-color-scheme:dark)'
   ).matches;
   const storedDarkMode = localStorage.getItem('darkTheme') === 'true';
-
-  return storedDarkMode || prefersDarkMode;
+  const isDarkTheme = storedDarkMode || prefersDarkMode;
+  document.body.classList.toggle('dark-theme', isDarkTheme);
+  return isDarkTheme;
 };
 
 export const AppProvider = ({ children }) => {
@@ -20,9 +21,6 @@ export const AppProvider = ({ children }) => {
     localStorage.setItem('darkTheme', newDarkTheme);
   };
 
-  useEffect(() => {
-    document.body.classList.toggle('dark-theme', isDarkTheme);
-  }, [isDarkTheme]);
   return (
     <AppContext.Provider
       value={{ isDarkTheme, toggleDarkTheme, searchTerm, setSearchTerm }}
